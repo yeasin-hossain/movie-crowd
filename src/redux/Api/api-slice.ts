@@ -4,14 +4,14 @@ import {
   FetchArgs,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
+import {base_url} from '../../_utils';
 
 const baseQuery = async (
   args: string | FetchArgs,
   api: BaseQueryApi,
   extraOptions: {},
 ) => {
-  let baseUrl =
-    'https://api.themoviedb.org/3/movie/862?api_key=cd890f94a756b1518a2a17617a5b430e';
+  let baseUrl = base_url;
 
   const rowQuery = fetchBaseQuery({
     baseUrl: baseUrl,

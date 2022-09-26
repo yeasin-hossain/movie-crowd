@@ -15,14 +15,6 @@ export interface ResponseType {
   error?: FetchBaseQueryError | SerializedError;
 }
 
-export interface SetPasswordResponse extends ResponseType {
-  result?: {
-    access: string;
-    refresh: string;
-  };
-  details?: ErrorResponse | any;
-}
-
 export interface ErrorDataType {
   data: {
     code?: string;
