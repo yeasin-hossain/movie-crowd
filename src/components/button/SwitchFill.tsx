@@ -2,11 +2,6 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../_utils/Theme';
 
-// interface Option {
-//   label: string;
-//   value: string;
-// }
-
 interface SwitchFillProps {
   height?: number;
   width?: number;

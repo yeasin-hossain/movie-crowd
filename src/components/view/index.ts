@@ -1,4 +1,3 @@
-export {default as AuthWrapper} from './AuthWrapper';
 export {default as HomeWrapper} from './HomeWrapper';
 export {default as CustomStatusBar} from './CustomStatusBar';
 export {default as Avatar} from './Avatar';

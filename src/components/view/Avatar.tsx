@@ -11,7 +11,7 @@ const Avatar = ({uri, onPress}: AvatarProps) => {
   return (
     <TouchableOpacity disabled={!onPress} onPress={onPress}>
       <Image
-        source={uri && uri.trim().length > 0 ? {uri: uri} : Images.ropanaSplash}
+        source={uri && uri.trim().length > 0 ? {uri: uri} : Images.splash}
         style={styles.avatarView}
       />
     </TouchableOpacity>
