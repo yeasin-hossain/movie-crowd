@@ -19,9 +19,10 @@ const GenreSlice = createSlice({
       action: PayloadAction<genreInterface>,
     ) {
       const {payload} = action;
-      state = {...payload};
+      return {...payload};
     },
   },
 });
+
 export const {setSelectedGenre} = GenreSlice.actions;
 export default GenreSlice.reducer;

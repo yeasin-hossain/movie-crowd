@@ -1,7 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {apiSlice} from './Api';
+import genreSlice from './Genre/genre-slice';
 
 const rootReducer = combineReducers({
+  genre: genreSlice,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

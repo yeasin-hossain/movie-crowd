@@ -3,9 +3,9 @@ interface ThemeProps {
 }
 
 export const colors = {
-  primary: '#047857',
-  primary_light: '#D1FAE5',
-  background: '#F1F5F9',
+  primary: '#afc6c3',
+  primary_light: '#cee3e1',
+  background: '#fde9cf',
   background_white: '#FFFFFF',
   transparent: 'transparent',
   text: {

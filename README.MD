@@ -1,0 +1,1 @@
+https://api.themoviedb.org/3/discover/movie?api_key=cd890f94a756b1518a2a17617a5b430e&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=1&with_genres=comedy&with_watch_monetization_types=flatrate
