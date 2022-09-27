@@ -13,7 +13,7 @@ interface GenreItemProps {
 }
 
 const GenreItem = ({genre, onPress}: GenreItemProps) => {
-  const name = useAppSelector(state => state.genre);
+  const {name} = useAppSelector(state => state.genre);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -21,7 +21,7 @@ const GenreItem = ({genre, onPress}: GenreItemProps) => {
         styles.container,
         {
           backgroundColor:
-            name.name === genre.name ? colors.primary_light : colors.primary,
+            name === genre.name ? colors.background : colors.primary,
         },
       ]}>
       <Text style={styles.name}>{genre.name}</Text>

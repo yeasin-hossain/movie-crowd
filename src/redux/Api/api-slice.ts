@@ -28,7 +28,7 @@ const baseQueryWithReAuth = async (
   let result = await baseQuery(args, api, extraOptions);
   const {dispatch, getState} = api;
   const {error} = result;
-
+  console.log(result);
   /**
    * Error
    */

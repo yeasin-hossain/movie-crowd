@@ -1,11 +1,12 @@
 import {View} from 'react-native';
 import React from 'react';
-import {GenreList} from '../../feature';
+import {GenreList, MoviesByGenre} from '../../feature';
 
 const HomeDashboard = () => {
   return (
     <View>
       <GenreList />
+      <MoviesByGenre />
     </View>
   );
 };

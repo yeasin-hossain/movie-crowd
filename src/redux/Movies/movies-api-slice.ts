@@ -3,10 +3,13 @@ import {apiSlice} from '../Api';
 
 export const moviesApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getMoviesByGenre: builder.query<any, {genre: string}>({
-      query: ({genre}) => API_END_POINT.discoverMovie(genre),
+    getMoviesByGenre: builder.mutation<any, {genre: string}>({
+      query: ({genre}) => ({
+        url: API_END_POINT.discoverMovie(genre),
+        method: 'GET',
+      }),
     }),
   }),
 });
 
-export const {useGetMoviesByGenreQuery} = moviesApiSlice;
+export const {useGetMoviesByGenreMutation} = moviesApiSlice;
