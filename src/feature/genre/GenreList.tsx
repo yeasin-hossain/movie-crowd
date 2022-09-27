@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList} from 'react-native';
 import React from 'react';
 import {
   genreInterface,
@@ -10,7 +10,7 @@ import {useAppDispatch} from '../../redux';
 
 const GenreList = () => {
   const dispatch = useAppDispatch();
-  const {data, isLoading, isSuccess} = useGetGenreQuery();
+  const {data} = useGetGenreQuery();
 
   return (
     <FlatList
@@ -29,5 +29,3 @@ const GenreList = () => {
 };
 
 export default GenreList;
-
-const styles = StyleSheet.create({});

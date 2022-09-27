@@ -33,8 +33,7 @@ export default GenreItem;
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: colors.primary,
-    margin: HORIZONTAL_SPACE / 3,
+    marginHorizontal: HORIZONTAL_SPACE / 3,
     padding: HORIZONTAL_SPACE / 1.5,
     borderRadius: HORIZONTAL_SPACE / 2,
     borderColor: colors.blueGray(300),
