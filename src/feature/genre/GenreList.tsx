@@ -1,17 +1,12 @@
 import {FlatList} from 'react-native';
 import React from 'react';
-import {
-  genreInterface,
-  setSelectedGenre,
-  useGetGenreQuery,
-} from '../../redux/Genre';
+import {genreInterface, setSelectedGenre, useGetGenreQuery} from '../../redux';
 import GenreItem from './GenreItem';
 import {useAppDispatch} from '../../redux';
 
 const GenreList = () => {
   const dispatch = useAppDispatch();
   const {data} = useGetGenreQuery();
-
   return (
     <FlatList
       data={data?.genres}
