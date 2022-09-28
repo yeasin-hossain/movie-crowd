@@ -21,7 +21,7 @@ const GenreItem = ({genre, onPress}: GenreItemProps) => {
         styles.container,
         {
           backgroundColor:
-            name === genre.name ? colors.background : colors.primary,
+            name === genre.name ? colors.primary_light : colors.primary,
         },
       ]}>
       <Text style={styles.name}>{genre.name}</Text>
@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     margin: HORIZONTAL_SPACE / 3,
     padding: HORIZONTAL_SPACE / 1.5,
     borderRadius: HORIZONTAL_SPACE / 2,
-    borderColor: colors.blueGray(300),
+    borderColor: colors.blueGray(100),
     borderWidth: 1,
 
-    shadowColor: colors.blueGray(200),
+    shadowColor: colors.background_white,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   name: {
-    fontWeight: '500',
+    fontWeight: 'bold',
     fontSize: 16,
-    color: colors.blueGray(900),
+    color: colors.blueGray(100),
   },
 });

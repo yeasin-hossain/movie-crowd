@@ -3,8 +3,8 @@ interface ThemeProps {
 }
 
 export const colors = {
-  primary: '#afc6c3',
-  primary_light: '#cee3e1',
+  primary: '#8B0000',
+  primary_light: '#DC2626',
   background: '#F8FAFC',
   background_white: '#FFFFFF',
   transparent: 'transparent',

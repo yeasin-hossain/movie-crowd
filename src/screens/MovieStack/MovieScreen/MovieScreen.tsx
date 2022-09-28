@@ -1,4 +1,11 @@
-import {Dimensions, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {MovieProps} from '../navigationTypes';
 import {ImageEndPoint} from '../../../_utils';
@@ -13,21 +20,26 @@ const MovieScreen = ({route}: MovieProps) => {
   const {movie} = route.params;
   const {data: castAndCrews, isSuccess: castEndCrewSuccess} =
     useGetCastAndCrewQuery({movieId: movie.id});
-  console.log(castAndCrews);
+
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.posterContainer}>
         <Image
-          source={{uri: ImageEndPoint(movie.poster_path)}}
+          source={{uri: ImageEndPoint(movie?.poster_path)}}
           style={styles.poster}
         />
       </View>
-      <Text style={styles?.title}>{movie.title}</Text>
-      <Text style={styles?.overview}>{movie.overview}</Text>
-      {castEndCrewSuccess && (
-        <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
-      )}
-      <PrimaryButton buttonText="Add To Favorite" />
+      <View style={styles.informationContainer}>
+        <Text style={styles.title}>{movie?.title}</Text>
+        <Text style={[styles.title, styles.release_date]}>
+          {movie?.release_date.toString()}
+        </Text>
+        <Text style={styles.overview}>{movie.overview}</Text>
+        {castEndCrewSuccess && (
+          <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
+        )}
+        <PrimaryButton buttonText="Add To Favorite" />
+      </View>
     </ScrollView>
   );
 };
@@ -36,7 +48,7 @@ export default MovieScreen;
 
 const styles = StyleSheet.create({
   posterContainer: {
-    backgroundColor: '#8B0000',
+    backgroundColor: colors.primary,
     padding: 6,
   },
   poster: {
@@ -52,11 +64,19 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
+  informationContainer: {
+    paddingHorizontal: HORIZONTAL_SPACE,
+  },
   title: {
     fontSize: 19,
     textAlign: 'center',
-    padding: 6,
+    paddingVertical: HORIZONTAL_SPACE / 2,
     fontWeight: 'bold',
+  },
+  release_date: {
+    fontSize: 15,
+    paddingVertical: HORIZONTAL_SPACE / 3,
+    paddingTop: 0,
   },
   overview: {
     padding: HORIZONTAL_SPACE / 2,
