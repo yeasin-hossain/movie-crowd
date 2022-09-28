@@ -35,6 +35,7 @@ const HomeDashboard = () => {
             <MoviesByGenre />
           </>
         }
+        ListFooterComponent={<>{isLoading && <Loading />}</>}
         data={randomMovies}
         numColumns={2}
         renderItem={({item}) => <MovieItem movie={item} />}
@@ -44,7 +45,6 @@ const HomeDashboard = () => {
         keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
       />
-      {isLoading && <Loading />}
     </>
   );
 };
