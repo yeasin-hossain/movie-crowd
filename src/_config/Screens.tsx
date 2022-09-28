@@ -1,14 +1,10 @@
 import React from 'react';
 import {HomeWrapper} from '../components/view';
-import {HomeDashboard} from '../screens/Home';
+import MovieStack from '../screens/MovieStack/navigation';
 import WatchListScreen from '../screens/WatchList/WatchListScreen';
 
 export const HomeScreen = () => {
-  return (
-    <HomeWrapper>
-      <HomeDashboard />
-    </HomeWrapper>
-  );
+  return <MovieStack />;
 };
 
 export const WatchList = () => {

@@ -13,8 +13,8 @@ const AppTab = () => {
     <Tab.Navigator
       tabBar={props => <CustomBottomTabBar {...props} />}
       screenOptions={{headerShown: false}}
-      initialRouteName="Home">
-      <Tab.Screen name="Home" component={HomeScreen} />
+      initialRouteName="MovieStack">
+      <Tab.Screen name="MovieStack" component={HomeScreen} />
       <Tab.Screen name="WatchList" component={WatchList} />
     </Tab.Navigator>
   );

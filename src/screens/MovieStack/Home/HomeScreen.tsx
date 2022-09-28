@@ -6,12 +6,13 @@ import {
   useAppDispatch,
   useAppSelector,
   useGetTrendingMoviesMutation,
-} from '../../redux';
-import {Loading} from '../../components/view';
-import {GenreList, MovieItem, MoviesByGenre} from '../../feature';
-import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
+} from '../../../redux';
+import {Loading} from '../../../components/view';
+import {GenreList, MovieItem, MoviesByGenre} from '../../../feature';
+import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
+import {HomeProps} from '../navigationTypes';
 
-const HomeDashboard = () => {
+const HomeDashboard = ({}: HomeProps) => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
   const dispatch = useAppDispatch();
 
