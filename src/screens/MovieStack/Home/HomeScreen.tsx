@@ -30,6 +30,7 @@ const HomeDashboard = ({navigation}: HomeProps) => {
   return (
     <>
       <GenreList />
+
       <FlatList
         ListHeaderComponent={
           <>
@@ -39,18 +40,19 @@ const HomeDashboard = ({navigation}: HomeProps) => {
         }
         ListFooterComponent={<>{isLoading && <Loading />}</>}
         data={randomMovies}
-        numColumns={2}
         renderItem={({item}) => (
           <MovieItem
             movie={item}
             onPress={() => navigation.navigate('Movie', {movie: item})}
           />
         )}
+        columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
         onEndReached={() => dispatch(updatePageNumber(page + 1))}
         onEndReachedThreshold={0}
         keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
+        numColumns={9}
       />
     </>
   );
@@ -64,5 +66,8 @@ const styles = StyleSheet.create({
     color: colors.blueGray(700),
     padding: HORIZONTAL_SPACE,
     paddingBottom: HORIZONTAL_SPACE / 4,
+  },
+  wrapStyle: {
+    flexWrap: 'wrap',
   },
 });

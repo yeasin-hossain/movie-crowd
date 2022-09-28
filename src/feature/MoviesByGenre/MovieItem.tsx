@@ -1,4 +1,10 @@
-import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {movieInterface} from '../../redux';
 import {ImageEndPoint} from '../../_utils';
@@ -9,6 +15,8 @@ interface movieProps {
   movie: movieInterface;
   onPress?: () => void;
 }
+const WIDTH = Dimensions.get('screen').width;
+
 const MovieItem = ({movie}: movieProps) => {
   const navigation = useNavigation();
 
@@ -33,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     padding: HORIZONTAL_SPACE / 2,
     borderRadius: HORIZONTAL_SPACE / 2,
-    width: 160,
+    width: WIDTH / 2.5,
     alignItems: 'center',
     justifyContent: 'space-between',
     borderColor: colors.blueGray(300),
