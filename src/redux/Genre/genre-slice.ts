@@ -6,8 +6,8 @@ export interface genreInterface {
 }
 
 const initialState: genreInterface = {
-  name: '',
-  id: 0,
+  name: 'Action',
+  id: 28,
 };
 
 const GenreSlice = createSlice({

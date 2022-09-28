@@ -1,20 +1,21 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppSelector, useGetMoviesByGenreMutation} from '../../redux';
 import {Loading} from '../../components/view';
 import MovieItem from './MovieItem';
 
 const MoviesByGenre = () => {
-  const {name} = useAppSelector(state => state.genre);
-
+  const {id} = useAppSelector(state => state.genre);
   const [getMovies, {data, isLoading}] = useGetMoviesByGenreMutation();
+
   useEffect(() => {
     (async () => {
       await getMovies({
-        genre: name,
+        genre: id,
       });
     })();
-  }, [name, getMovies]);
+  }, [id, getMovies]);
+
   return (
     <View>
       {isLoading && <Loading />}
@@ -29,5 +30,3 @@ const MoviesByGenre = () => {
 };
 
 export default MoviesByGenre;
-
-const styles = StyleSheet.create({});

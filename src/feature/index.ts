@@ -1,2 +1,2 @@
-export * from './genre';
+export * from './Genre';
 export * from './MoviesByGenre';

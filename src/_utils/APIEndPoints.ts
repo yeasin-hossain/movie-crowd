@@ -5,6 +5,8 @@ export const ImageEndPoint = (url: string) =>
 
 export const API_END_POINT = {
   getGenre: `/genre/movie/list${api_key}`,
-  discoverMovie: (genre: string) =>
+  discoverMovie: (genre: number) =>
     `/discover/movie${api_key}&include_adult=false&include_video=false&with_genres=${genre}`,
+  trendingMovie: (page: number) =>
+    `/trending/movie/week${api_key}&page=${page}`,
 };
