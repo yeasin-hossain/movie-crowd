@@ -1,5 +1,6 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
+import {HomeProps} from '../navigationTypes';
 import {
   pushRandomMovies,
   updatePageNumber,
@@ -7,12 +8,11 @@ import {
   useAppSelector,
   useGetTrendingMoviesMutation,
 } from '../../../redux';
-import {Loading} from '../../../components/view';
 import {GenreList, MovieItem, MoviesByGenre} from '../../../feature';
+import {Loading} from '../../../components/view';
 import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
-import {HomeProps} from '../navigationTypes';
 
-const HomeDashboard = ({}: HomeProps) => {
+const HomeDashboard = ({navigation}: HomeProps) => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
   const dispatch = useAppDispatch();
 
@@ -40,7 +40,12 @@ const HomeDashboard = ({}: HomeProps) => {
         ListFooterComponent={<>{isLoading && <Loading />}</>}
         data={randomMovies}
         numColumns={2}
-        renderItem={({item}) => <MovieItem movie={item} />}
+        renderItem={({item}) => (
+          <MovieItem
+            movie={item}
+            onPress={() => navigation.navigate('Movie', {movie: item})}
+          />
+        )}
         showsHorizontalScrollIndicator={false}
         onEndReached={() => dispatch(updatePageNumber(page + 1))}
         onEndReachedThreshold={0}

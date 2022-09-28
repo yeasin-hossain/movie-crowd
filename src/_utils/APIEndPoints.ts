@@ -9,4 +9,5 @@ export const API_END_POINT = {
     `/discover/movie${api_key}&include_adult=false&include_video=false&with_genres=${genre}`,
   trendingMovie: (page: number) =>
     `/trending/movie/week${api_key}&page=${page}`,
+  movieCastAndCrew: (movieId: number) => `/movie/${movieId}/credits${api_key}`,
 };
