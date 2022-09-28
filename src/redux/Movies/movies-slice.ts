@@ -27,7 +27,6 @@ const GenreSlice = createSlice({
       action: PayloadAction<Array<movieInterface>>,
     ) {
       const {payload} = action;
-      console.log(payload);
       state.randomMovies = [...state.randomMovies, ...payload];
     },
   },

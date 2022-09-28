@@ -3,14 +3,19 @@ import React from 'react';
 import {movieInterface} from '../../redux';
 import {ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
+import {useNavigation} from '@react-navigation/native';
 
 interface movieProps {
   movie: movieInterface;
   onPress?: () => void;
 }
 const MovieItem = ({movie}: movieProps) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Movie', {movie})}>
       <Image
         source={{uri: ImageEndPoint(movie.poster_path)}}
         style={styles.poster}

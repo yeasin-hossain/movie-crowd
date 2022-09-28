@@ -5,7 +5,6 @@ import {bottomNavigationData} from '../../_utils';
 import {colors} from '../../_utils/Theme';
 
 const CustomBottomTabBar = ({state, navigation}: BottomTabBarProps) => {
-  // console.log(state, descriptors, navigation);
   return (
     <View style={styles.tabContainer}>
       {state.routes.map((route, index) => {
@@ -27,10 +26,6 @@ const CustomBottomTabBar = ({state, navigation}: BottomTabBarProps) => {
             onPress={onPress}
             style={styles.tabItem}
             key={route.key}>
-            <View style={isFocused && styles.selectedBackground}>
-              <Text>Ok</Text>
-            </View>
-
             <Text style={isFocused ? styles.textSelected : styles.text}>
               {label}
             </Text>
@@ -57,21 +52,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  selectedBackground: {
-    width: 64,
-    height: 32,
-    backgroundColor: '#E0F9F4',
-    borderRadius: 20,
-    paddingVertical: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   text: {
-    fontSize: 12,
-    color: colors.blueGray(500),
+    fontSize: 14,
+    color: colors.blueGray(900),
   },
   textSelected: {
-    fontSize: 12,
-    color: colors.primary,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: colors.text.blueGray,
   },
 });

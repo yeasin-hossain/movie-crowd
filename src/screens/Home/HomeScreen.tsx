@@ -1,4 +1,4 @@
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {
   pushRandomMovies,
@@ -9,6 +9,7 @@ import {
 } from '../../redux';
 import {Loading} from '../../components/view';
 import {GenreList, MovieItem, MoviesByGenre} from '../../feature';
+import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 
 const HomeDashboard = () => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
@@ -21,18 +22,18 @@ const HomeDashboard = () => {
       const {data} = await getTrendingMovies({
         page,
       });
-      console.log(data);
       dispatch(pushRandomMovies(data?.results));
     })();
   }, [page, getTrendingMovies, dispatch]);
 
   return (
     <>
+      <GenreList />
       <FlatList
         ListHeaderComponent={
           <>
-            <GenreList />
             <MoviesByGenre />
+            <Text style={styles.title}>Trending movies...</Text>
           </>
         }
         ListFooterComponent={<>{isLoading && <Loading />}</>}
@@ -50,3 +51,12 @@ const HomeDashboard = () => {
 };
 
 export default HomeDashboard;
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 19,
+    fontWeight: '800',
+    color: colors.blueGray(700),
+    padding: HORIZONTAL_SPACE,
+    paddingBottom: HORIZONTAL_SPACE / 4,
+  },
+});
