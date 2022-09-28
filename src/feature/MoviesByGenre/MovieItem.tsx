@@ -1,10 +1,5 @@
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {movieInterface} from '../../redux';
 import {ImageEndPoint} from '../../_utils';
@@ -14,15 +9,15 @@ import {useNavigation} from '@react-navigation/native';
 interface movieProps {
   movie: movieInterface;
   onPress?: () => void;
+  landscapeAble?: boolean;
 }
-const WIDTH = Dimensions.get('screen').width;
 
-const MovieItem = ({movie}: movieProps) => {
+const MovieItem = ({movie, landscapeAble}: movieProps) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, {width: landscapeAble ? 170 : 160}]}
       onPress={() => navigation.navigate('Movie', {movie})}>
       <Image
         source={{uri: ImageEndPoint(movie.poster_path)}}
@@ -41,11 +36,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     padding: HORIZONTAL_SPACE / 2,
     borderRadius: HORIZONTAL_SPACE / 2,
-    width: WIDTH / 2.5,
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderColor: colors.blueGray(300),
-    borderWidth: 1,
+    borderColor: colors.primary,
+    borderWidth: 0.5,
   },
   poster: {
     height: 200,

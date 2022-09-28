@@ -30,7 +30,6 @@ const HomeDashboard = ({navigation}: HomeProps) => {
   return (
     <>
       <GenreList />
-
       <FlatList
         ListHeaderComponent={
           <>
@@ -44,6 +43,7 @@ const HomeDashboard = ({navigation}: HomeProps) => {
           <MovieItem
             movie={item}
             onPress={() => navigation.navigate('Movie', {movie: item})}
+            landscapeAble={true}
           />
         )}
         columnWrapperStyle={styles.wrapStyle}
@@ -52,7 +52,7 @@ const HomeDashboard = ({navigation}: HomeProps) => {
         onEndReachedThreshold={0}
         keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
-        numColumns={9}
+        numColumns={10000}
       />
     </>
   );
