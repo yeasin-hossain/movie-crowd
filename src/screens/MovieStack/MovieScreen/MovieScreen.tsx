@@ -1,26 +1,34 @@
 import {
-  Dimensions,
   Image,
+  Linking,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
 import {MovieProps} from '../navigationTypes';
-import {ImageEndPoint} from '../../../_utils';
+import {API_END_POINT, ImageEndPoint} from '../../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
 import {PrimaryButton} from '../../../components/button';
-import {useGetCastAndCrewQuery} from '../../../redux';
+import {useGetCastAndCrewQuery, useGetMovieDetailQuery} from '../../../redux';
 import {CastAndCrew} from './CastAndCrew';
-
-const WIDTH = Dimensions.get('screen').width;
 
 const MovieScreen = ({route}: MovieProps) => {
   const {movie} = route.params;
   const {data: castAndCrews, isSuccess: castEndCrewSuccess} =
     useGetCastAndCrewQuery({movieId: movie.id});
+  const {data: movieDetail, isSuccess: movieDetailSuccess} =
+    useGetMovieDetailQuery({movieId: movie.id});
 
+  const visitImDB = async (imdbID: number) => {
+    try {
+      Linking.openURL(API_END_POINT.IMDB(imdbID));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.posterContainer}>
@@ -31,9 +39,22 @@ const MovieScreen = ({route}: MovieProps) => {
       </View>
       <View style={styles.informationContainer}>
         <Text style={styles.title}>{movie?.title}</Text>
-        <Text style={[styles.title, styles.release_date]}>
-          {movie?.release_date.toString()}
-        </Text>
+        <View style={styles.imdbContainer}>
+          {movieDetailSuccess && (
+            <TouchableOpacity
+              style={styles.imdb}
+              onPress={() => visitImDB(movieDetail?.imdb_id)}>
+              <Text style={[styles.title, styles.release_date]}>
+                {movieDetail?.status === 'Released' &&
+                  movieDetail?.vote_average.toFixed(2)}{' '}
+                / 10 ↗
+              </Text>
+            </TouchableOpacity>
+          )}
+          <Text style={[styles.title, styles.release_date]}>
+            {movie?.release_date.toString()}
+          </Text>
+        </View>
         <Text style={styles.overview}>{movie.overview}</Text>
         {castEndCrewSuccess && (
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
@@ -83,5 +104,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.blueGray(700),
     fontSize: 15,
+  },
+  imdbContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  imdb: {
+    backgroundColor: '#e0b41c',
+    padding: HORIZONTAL_SPACE / 3,
+    borderRadius: HORIZONTAL_SPACE / 2,
   },
 });

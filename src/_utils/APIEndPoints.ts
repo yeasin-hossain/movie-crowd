@@ -10,4 +10,7 @@ export const API_END_POINT = {
   trendingMovie: (page: number) =>
     `/trending/movie/week${api_key}&page=${page}`,
   movieCastAndCrew: (movieId: number) => `/movie/${movieId}/credits${api_key}`,
+  movieDetail: (movieId: number) => `/movie/${movieId}${api_key}`,
+
+  IMDB: (id: number) => `https://www.imdb.com/title/${id}`,
 };

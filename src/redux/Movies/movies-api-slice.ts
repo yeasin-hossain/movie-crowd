@@ -21,6 +21,12 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+    getMovieDetail: builder.query<any, {movieId: number}>({
+      query: ({movieId}) => ({
+        url: API_END_POINT.movieDetail(movieId),
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -28,4 +34,5 @@ export const {
   useGetMoviesByGenreMutation,
   useGetTrendingMoviesMutation,
   useGetCastAndCrewQuery,
+  useGetMovieDetailQuery,
 } = moviesApiSlice;
