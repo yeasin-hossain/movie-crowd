@@ -69,5 +69,6 @@ const styles = StyleSheet.create({
   },
   wrapStyle: {
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 });
