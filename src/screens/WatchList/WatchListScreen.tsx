@@ -8,6 +8,9 @@ import {
   useAppSelector,
 } from '../../redux';
 import {MovieItem} from '../../feature';
+import {TitleText} from '../../components/text';
+import {HORIZONTAL_SPACE} from '../../_utils/Theme';
+import { NotFound } from '../../components/view';
 
 const WatchListScreen = () => {
   const dispatch = useAppDispatch();
@@ -23,8 +26,11 @@ const WatchListScreen = () => {
     })();
   }, [dispatch]);
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
+        ListHeaderComponent={
+          <TitleText text="Your Favorites Movies..." styleProp={styles.title} />
+        }
         data={watchList}
         renderItem={({item}) => (
           <MovieItem
@@ -39,6 +45,7 @@ const WatchListScreen = () => {
         keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
         numColumns={10000}
+        ListEmptyComponent={<NotFound />}
       />
     </View>
   );
@@ -47,8 +54,16 @@ const WatchListScreen = () => {
 export default WatchListScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  title: {
+    textAlign: 'left',
+    padding: HORIZONTAL_SPACE,
+  },
   wrapStyle: {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    alignItems: 'flex-start',
   },
 });
