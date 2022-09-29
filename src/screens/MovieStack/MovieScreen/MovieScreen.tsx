@@ -14,7 +14,9 @@ import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
 import {PrimaryButton} from '../../../components/button';
 import {
   addToFavorite,
+  removeFromFavorite,
   useAppDispatch,
+  useAppSelector,
   useGetCastAndCrewQuery,
   useGetMovieDetailQuery,
 } from '../../../redux';
@@ -22,6 +24,7 @@ import {CastAndCrew} from './CastAndCrew';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
+  const {watchList} = useAppSelector(state => state.watchList);
 
   const {movie} = route.params;
   const {data: castAndCrews, isSuccess: castEndCrewSuccess} =
@@ -66,10 +69,18 @@ const MovieScreen = ({route}: MovieProps) => {
         {castEndCrewSuccess && (
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
-        <PrimaryButton
-          buttonText="Add To Favorite"
-          onPress={() => dispatch(addToFavorite(movie))}
-        />
+
+        {watchList.find(m => m.id === movie.id) ? (
+          <PrimaryButton
+            buttonText="Remove From Favorite"
+            onPress={() => dispatch(removeFromFavorite(movie))}
+          />
+        ) : (
+          <PrimaryButton
+            buttonText="Add To Favorite"
+            onPress={() => dispatch(addToFavorite(movie))}
+          />
+        )}
       </View>
     </ScrollView>
   );
