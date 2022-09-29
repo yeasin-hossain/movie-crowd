@@ -8,7 +8,7 @@ const CustomBottomTabBar = ({state, navigation}: BottomTabBarProps) => {
   return (
     <View style={styles.tabContainer}>
       {state.routes.map((route, index) => {
-        const {label, iconName, selectedIcon} = bottomNavigationData[index];
+        const {label} = bottomNavigationData[index];
         const isFocused = state.index === index;
         const onPress = () => {
           const event = navigation.emit({

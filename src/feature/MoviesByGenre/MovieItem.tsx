@@ -1,10 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {movieInterface} from '../../redux';
 import {ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {useNavigation} from '@react-navigation/native';
+import {useOrientation} from '../../hooks';
 
 interface movieProps {
   movie: movieInterface;
@@ -12,12 +19,16 @@ interface movieProps {
   landscapeAble?: boolean;
 }
 
+const WIDTH = Dimensions.get('screen').width;
+
 const MovieItem = ({movie, landscapeAble}: movieProps) => {
   const navigation = useNavigation();
+  const orientation = useOrientation();
 
+  const width = orientation === 'PORTRAIT' ? WIDTH / 2.2 : 170;
   return (
     <TouchableOpacity
-      style={[styles.container, {width: landscapeAble ? 170 : 160}]}
+      style={[styles.container, {width: landscapeAble ? width : 160}]}
       onPress={() => navigation.navigate('Movie', {movie})}>
       <Image
         source={{uri: ImageEndPoint(movie.poster_path)}}
@@ -32,7 +43,7 @@ export default MovieItem;
 
 const styles = StyleSheet.create({
   container: {
-    margin: HORIZONTAL_SPACE / 2,
+    margin: HORIZONTAL_SPACE / 3,
     backgroundColor: colors.background,
     padding: HORIZONTAL_SPACE / 2,
     borderRadius: HORIZONTAL_SPACE / 2,

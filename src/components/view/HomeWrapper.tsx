@@ -13,6 +13,6 @@ export default HomeWrapper;
 const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    marginBottom: -35,
   },
 });

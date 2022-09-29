@@ -22,9 +22,5 @@ export const WatchList = () => {
 };
 
 export const Movie = ({navigation, route}: MovieProps) => {
-  return (
-    <HomeWrapper>
-      <MovieScreen navigation={navigation} route={route} />
-    </HomeWrapper>
-  );
+  return <MovieScreen navigation={navigation} route={route} />;
 };

@@ -39,12 +39,12 @@ export default WatchListScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
     flex: 1,
-    paddingBottom: HORIZONTAL_SPACE / 4,
+    backgroundColor: colors.primary,
   },
   title: {
     textAlign: 'left',
+    fontWeight: 'bold',
     padding: HORIZONTAL_SPACE,
     color: colors.text.light,
   },
