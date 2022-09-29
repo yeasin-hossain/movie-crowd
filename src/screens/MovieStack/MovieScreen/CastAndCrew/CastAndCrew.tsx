@@ -30,6 +30,7 @@ const CastAndCrew = ({cast, crew}: CastAndCrewPropsType) => {
         horizontal
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(item, index) => `${item.id} ${index}`}
       />
       <Text style={styles.text}>Crew...</Text>
       <FlatList
@@ -38,6 +39,7 @@ const CastAndCrew = ({cast, crew}: CastAndCrewPropsType) => {
         horizontal
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(item, index) => `${item.id} ${index}`}
       />
     </View>
   );

@@ -13,13 +13,12 @@ const initialState: moviesInterface = {
   page: 1,
 };
 
-const GenreSlice = createSlice({
+const MovieSlice = createSlice({
   name: 'Movies',
   initialState,
   reducers: {
     updatePageNumber(state: moviesInterface, action: PayloadAction<any>) {
       const {payload} = action;
-      console.log(payload);
       state.page = payload;
     },
     pushRandomMovies(
@@ -32,5 +31,5 @@ const GenreSlice = createSlice({
   },
 });
 
-export const {updatePageNumber, pushRandomMovies} = GenreSlice.actions;
-export default GenreSlice.reducer;
+export const {updatePageNumber, pushRandomMovies} = MovieSlice.actions;
+export default MovieSlice.reducer;

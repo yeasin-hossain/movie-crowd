@@ -12,10 +12,17 @@ import {MovieProps} from '../navigationTypes';
 import {API_END_POINT, ImageEndPoint} from '../../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
 import {PrimaryButton} from '../../../components/button';
-import {useGetCastAndCrewQuery, useGetMovieDetailQuery} from '../../../redux';
+import {
+  addToFavorite,
+  useAppDispatch,
+  useGetCastAndCrewQuery,
+  useGetMovieDetailQuery,
+} from '../../../redux';
 import {CastAndCrew} from './CastAndCrew';
 
 const MovieScreen = ({route}: MovieProps) => {
+  const dispatch = useAppDispatch();
+
   const {movie} = route.params;
   const {data: castAndCrews, isSuccess: castEndCrewSuccess} =
     useGetCastAndCrewQuery({movieId: movie.id});
@@ -59,7 +66,10 @@ const MovieScreen = ({route}: MovieProps) => {
         {castEndCrewSuccess && (
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
-        <PrimaryButton buttonText="Add To Favorite" />
+        <PrimaryButton
+          buttonText="Add To Favorite"
+          onPress={() => dispatch(addToFavorite(movie))}
+        />
       </View>
     </ScrollView>
   );
