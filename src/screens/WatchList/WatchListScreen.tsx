@@ -1,30 +1,15 @@
 import {FlatList, StyleSheet, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {
-  getWatchListLocalInitialData,
-  setDataFromLocalStore,
-  useAppDispatch,
-  useAppSelector,
-} from '../../redux';
+import {useAppSelector} from '../../redux';
 import {MovieItem} from '../../feature';
 import {TitleText} from '../../components/text';
-import {HORIZONTAL_SPACE} from '../../_utils/Theme';
-import { NotFound } from '../../components/view';
+import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
+import {NotFound} from '../../components/view';
 
 const WatchListScreen = () => {
-  const dispatch = useAppDispatch();
-
   const navigation = useNavigation();
   const {watchList} = useAppSelector(state => state.watchList);
-
-  useEffect(() => {
-    (async () => {
-      const data = await getWatchListLocalInitialData();
-      console.log(data);
-      dispatch(setDataFromLocalStore(data));
-    })();
-  }, [dispatch]);
   return (
     <View style={styles.container}>
       <FlatList
@@ -41,9 +26,8 @@ const WatchListScreen = () => {
         )}
         columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
-        onEndReachedThreshold={0}
-        keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(kye, index) => `${kye.title}${index}`}
         numColumns={10000}
         ListEmptyComponent={<NotFound />}
       />
@@ -55,15 +39,17 @@ export default WatchListScreen;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: colors.primary,
     flex: 1,
+    paddingBottom: HORIZONTAL_SPACE / 4,
   },
   title: {
     textAlign: 'left',
     padding: HORIZONTAL_SPACE,
+    color: colors.text.light,
   },
   wrapStyle: {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
   },
 });

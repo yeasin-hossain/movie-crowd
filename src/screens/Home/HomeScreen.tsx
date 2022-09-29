@@ -1,7 +1,9 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {
+  getWatchListLocalInitialData,
   pushRandomMovies,
+  setDataFromLocalStore,
   updatePageNumber,
   useAppDispatch,
   useAppSelector,
@@ -27,6 +29,14 @@ const HomeDashboard = ({navigation}: HomeDashboardProps) => {
     })();
   }, [page, getTrendingMovies, dispatch]);
 
+  useEffect(() => {
+    (async () => {
+      const data = await getWatchListLocalInitialData();
+      if (data) {
+        dispatch(setDataFromLocalStore(data));
+      }
+    })();
+  }, [dispatch]);
   return (
     <>
       <GenreList />

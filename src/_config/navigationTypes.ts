@@ -14,3 +14,4 @@ export type AppStackParam = {
 };
 
 export type HomeDashboardProps = NativeStackScreenProps<AppTabParam, 'Home'>;
+export type MovieProps = NativeStackScreenProps<AppStackParam, 'Movie'>;

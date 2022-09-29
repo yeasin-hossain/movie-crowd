@@ -1,13 +1,13 @@
 import React from 'react';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomeScreen, WatchList} from './Screens';
+import {HomeScreen, Movie, WatchList} from './Screens';
 import {useColorScheme} from 'react-native';
 import {Theme} from '../_utils';
 import {CustomBottomTabBar} from '../components/view';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MovieScreen} from '../screens/MovieScreen';
 import {AppStackParam, AppTabParam} from './navigationTypes';
+import {colors} from '../_utils/Theme';
 
 const Tab = createBottomTabNavigator<AppTabParam>();
 const StackApp = createNativeStackNavigator<AppStackParam>();
@@ -32,8 +32,8 @@ const AppStack = () => {
       <StackApp.Screen name="AppTab" component={HomeTab} />
       <StackApp.Screen
         name="Movie"
-        component={MovieScreen}
-        options={{headerShown: true}}
+        component={Movie}
+        options={{headerShown: true, headerTintColor: colors.primary}}
       />
     </StackApp.Navigator>
   );

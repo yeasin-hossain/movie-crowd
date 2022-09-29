@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {MovieProps} from '../MovieStack/navigationTypes';
 import {API_END_POINT, ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {PrimaryButton} from '../../components/button';
@@ -21,6 +20,7 @@ import {
   useGetMovieDetailQuery,
 } from '../../redux';
 import {CastAndCrew} from './CastAndCrew';
+import {MovieProps} from '../../_config/navigationTypes';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
@@ -70,7 +70,7 @@ const MovieScreen = ({route}: MovieProps) => {
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
 
-        {watchList.find(m => m.id === movie.id) ? (
+        {watchList?.find(m => m.id === movie.id) ? (
           <PrimaryButton
             buttonText="Remove From Favorite"
             onPress={() => dispatch(removeFromFavorite(movie))}
