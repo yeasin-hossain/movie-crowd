@@ -44,7 +44,7 @@ export default MovieItem;
 const styles = StyleSheet.create({
   container: {
     margin: HORIZONTAL_SPACE / 3,
-    backgroundColor: colors.background,
+    backgroundColor: colors.blueGray(100),
     padding: HORIZONTAL_SPACE / 2,
     borderRadius: HORIZONTAL_SPACE / 2,
     alignItems: 'center',
