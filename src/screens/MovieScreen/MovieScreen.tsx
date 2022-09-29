@@ -8,10 +8,10 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {MovieProps} from '../navigationTypes';
-import {API_END_POINT, ImageEndPoint} from '../../../_utils';
-import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
-import {PrimaryButton} from '../../../components/button';
+import {MovieProps} from '../MovieStack/navigationTypes';
+import {API_END_POINT, ImageEndPoint} from '../../_utils';
+import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
+import {PrimaryButton} from '../../components/button';
 import {
   addToFavorite,
   removeFromFavorite,
@@ -19,7 +19,7 @@ import {
   useAppSelector,
   useGetCastAndCrewQuery,
   useGetMovieDetailQuery,
-} from '../../../redux';
+} from '../../redux';
 import {CastAndCrew} from './CastAndCrew';
 
 const MovieScreen = ({route}: MovieProps) => {

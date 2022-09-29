@@ -1,18 +1,18 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
-import {HomeProps} from '../navigationTypes';
 import {
   pushRandomMovies,
   updatePageNumber,
   useAppDispatch,
   useAppSelector,
   useGetTrendingMoviesMutation,
-} from '../../../redux';
-import {GenreList, MovieItem, MoviesByGenre} from '../../../feature';
-import {Loading} from '../../../components/view';
-import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
+} from '../../redux';
+import {GenreList, MovieItem, MoviesByGenre} from '../../feature';
+import {Loading} from '../../components/view';
+import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
+import {HomeDashboardProps} from '../../_config/navigationTypes';
 
-const HomeDashboard = ({navigation}: HomeProps) => {
+const HomeDashboard = ({navigation}: HomeDashboardProps) => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
   const dispatch = useAppDispatch();
 

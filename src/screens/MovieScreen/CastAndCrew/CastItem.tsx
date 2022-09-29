@@ -1,8 +1,8 @@
 import {Image, StyleSheet} from 'react-native';
 import React from 'react';
 import {castAndCrewsInterface} from './CastAndCrew';
-import {ImageEndPoint} from '../../../../_utils';
-import {colors, HORIZONTAL_SPACE} from '../../../../_utils/Theme';
+import {ImageEndPoint} from '../../../_utils';
+import {colors, HORIZONTAL_SPACE} from '../../../_utils/Theme';
 
 interface castProp {
   cast: castAndCrewsInterface;

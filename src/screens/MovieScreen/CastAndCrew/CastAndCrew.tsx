@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import CastItem from './CastItem';
-import {colors} from '../../../../_utils/Theme';
+import {colors} from '../../../_utils/Theme';
 export interface castAndCrewsInterface {
   adult: boolean;
   gender: number;
