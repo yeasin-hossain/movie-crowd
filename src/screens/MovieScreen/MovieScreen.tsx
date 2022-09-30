@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imdb: {
-    backgroundColor: '#e0b41c',
+    backgroundColor: colors.yellow,
     padding: HORIZONTAL_SPACE / 3,
     borderRadius: HORIZONTAL_SPACE / 2,
   },

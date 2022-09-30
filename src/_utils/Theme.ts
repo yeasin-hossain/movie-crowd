@@ -8,6 +8,7 @@ export const colors = {
   background: '#F8FAFC',
   background_white: '#FFFFFF',
   transparent: 'transparent',
+  yellow: '#e0b41c',
   text: {
     blueGray: '#64748B',
     light: '#FFFFFF',

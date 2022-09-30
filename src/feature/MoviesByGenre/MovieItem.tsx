@@ -5,9 +5,16 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import React from 'react';
-import {movieInterface} from '../../redux';
+import {
+  addToFavorite,
+  movieInterface,
+  removeFromFavorite,
+  useAppDispatch,
+  useAppSelector,
+} from '../../redux';
 import {ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {useNavigation} from '@react-navigation/native';
@@ -24,16 +31,47 @@ const WIDTH = Dimensions.get('screen').width;
 const MovieItem = ({movie, landscapeAble}: movieProps) => {
   const navigation = useNavigation();
   const orientation = useOrientation();
+  const {watchList} = useAppSelector(state => state.watchList);
+  const dispatch = useAppDispatch();
 
   const width = orientation === 'PORTRAIT' ? WIDTH / 2.2 : 170;
   return (
     <TouchableOpacity
       style={[styles.container, {width: landscapeAble ? width : 160}]}
       onPress={() => navigation.navigate('Movie', {movie})}>
-      <Image
-        source={{uri: ImageEndPoint(movie.poster_path)}}
-        style={styles.poster}
-      />
+      <View>
+        <Image
+          source={{uri: ImageEndPoint(movie.poster_path)}}
+          style={styles.poster}
+        />
+        {watchList?.find(m => m.id === movie.id) ? (
+          <TouchableOpacity
+            style={styles.addToFevButton}
+            onPress={() => dispatch(removeFromFavorite(movie))}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: colors.text.light,
+                fontWeight: 'bold',
+              }}>
+              X
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.addToFevButton}
+            onPress={() => dispatch(addToFavorite(movie))}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: colors.text.light,
+                fontWeight: 'bold',
+              }}>
+              +
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
       <Text style={styles.title}>{movie.title}</Text>
     </TouchableOpacity>
   );
@@ -60,6 +98,14 @@ const styles = StyleSheet.create({
   title: {
     color: colors.blueGray(800),
     fontSize: 16,
-    marginTop: 5,
+    marginTop: HORIZONTAL_SPACE / 2,
+  },
+  addToFevButton: {
+    paddingHorizontal: HORIZONTAL_SPACE,
+    marginHorizontal: HORIZONTAL_SPACE * 2,
+    marginTop: HORIZONTAL_SPACE / 2,
+    backgroundColor: colors.yellow,
+    borderRadius: HORIZONTAL_SPACE,
+    alignSelf: 'flex-end',
   },
 });
