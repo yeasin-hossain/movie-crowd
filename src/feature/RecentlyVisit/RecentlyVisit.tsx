@@ -1,20 +1,21 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useAppSelector} from '../../redux';
-import {MovieItem} from '../../components/view';
+import {MovieItem, NotFound} from '../../components/view';
 import {TitleText} from '../../components/text';
 import {HORIZONTAL_SPACE} from '../../_utils/Theme';
 
 const RecentlyVisit = () => {
   const {recentlyVisitedMovies} = useAppSelector(state => state.movies);
   return (
-    <View style={styles.container}>
-      <TitleText text="Recently Visited..." />
+    <View>
+      <TitleText text="Recently Visited..." styleProp={styles.container}/>
       <FlatList
         data={recentlyVisitedMovies}
         renderItem={({item}) => <MovieItem movie={item} />}
         horizontal
         showsHorizontalScrollIndicator={false}
+        ListEmptyComponent={<NotFound />}
       />
     </View>
   );
