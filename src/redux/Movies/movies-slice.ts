@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {getFromLocalStore, saveToLocalStore} from '../../_utils';
 import {movieInterface} from './movies-interface';
 
 interface moviesInterface {
@@ -14,6 +15,13 @@ const initialState: moviesInterface = {
   randomMovies: [],
   page: 1,
 };
+export const recentVisitedMoviesLocalStoreName = 'lastVisited';
+
+export const getRecentVisitInitialData = async () => {
+  const data = await getFromLocalStore(recentVisitedMoviesLocalStoreName);
+
+  return data ?? [];
+};
 
 const MovieSlice = createSlice({
   name: 'Movies',
@@ -23,14 +31,26 @@ const MovieSlice = createSlice({
       const {payload} = action;
       state.page = payload;
     },
+    setDataFromLocalStoreRecentVisit(
+      state: moviesInterface,
+      action: PayloadAction<Array<movieInterface>>,
+    ) {
+      const {payload} = action;
+      state.recentlyVisitedMovies = payload;
+    },
     addToRecentlyVisit(
       state: moviesInterface,
       action: PayloadAction<movieInterface>,
     ) {
       const {payload} = action;
-      const data = state.recentlyVisitedMovies.filter(m => m.id !== payload.id);
+
+      let data = state.recentlyVisitedMovies.filter(m => m.id !== payload.id);
+      if (data.length > 10) {
+        data = data.slice(0, 10);
+      }
 
       state.recentlyVisitedMovies = [payload, ...data];
+      saveToLocalStore(recentVisitedMoviesLocalStoreName, [payload, ...data]);
     },
     pushRandomMovies(
       state: moviesInterface,
@@ -42,6 +62,10 @@ const MovieSlice = createSlice({
   },
 });
 
-export const {updatePageNumber, pushRandomMovies, addToRecentlyVisit} =
-  MovieSlice.actions;
+export const {
+  updatePageNumber,
+  pushRandomMovies,
+  addToRecentlyVisit,
+  setDataFromLocalStoreRecentVisit,
+} = MovieSlice.actions;
 export default MovieSlice.reducer;

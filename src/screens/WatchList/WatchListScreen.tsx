@@ -2,10 +2,9 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useAppSelector} from '../../redux';
-import {MovieItem} from '../../feature';
 import {TitleText} from '../../components/text';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
-import {NotFound} from '../../components/view';
+import {MovieItem, NotFound} from '../../components/view';
 
 const WatchListScreen = () => {
   const navigation = useNavigation();

@@ -1,9 +1,11 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {
+  getRecentVisitInitialData,
   getWatchListLocalInitialData,
   pushRandomMovies,
   setDataFromLocalStore,
+  setDataFromLocalStoreRecentVisit,
   updatePageNumber,
   useAppDispatch,
   useAppSelector,
@@ -31,10 +33,11 @@ const HomeDashboard = ({}: HomeDashboardProps) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getWatchListLocalInitialData();
-      if (data) {
-        dispatch(setDataFromLocalStore(data));
-      }
+      const watchList = await getWatchListLocalInitialData();
+      const recentVisit = await getRecentVisitInitialData();
+
+      watchList && dispatch(setDataFromLocalStore(watchList));
+      recentVisit && dispatch(setDataFromLocalStoreRecentVisit(recentVisit));
     })();
   }, [dispatch]);
 
