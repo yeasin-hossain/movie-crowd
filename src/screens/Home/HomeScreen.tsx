@@ -9,12 +9,12 @@ import {
   useAppSelector,
   useGetTrendingMoviesMutation,
 } from '../../redux';
-import {GenreList, MoviesByGenre} from '../../feature';
+import {GenreList, MoviesByGenre, RecentlyVisit} from '../../feature';
 import {Loading, MovieItem} from '../../components/view';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {HomeDashboardProps} from '../../_config/navigationTypes';
 
-const HomeDashboard = ({navigation}: HomeDashboardProps) => {
+const HomeDashboard = ({}: HomeDashboardProps) => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
   const dispatch = useAppDispatch();
 
@@ -37,6 +37,7 @@ const HomeDashboard = ({navigation}: HomeDashboardProps) => {
       }
     })();
   }, [dispatch]);
+
   return (
     <>
       <GenreList />
@@ -44,6 +45,7 @@ const HomeDashboard = ({navigation}: HomeDashboardProps) => {
         ListHeaderComponent={
           <>
             <MoviesByGenre />
+            <RecentlyVisit />
             <Text style={styles.title}>Trending movies...</Text>
           </>
         }

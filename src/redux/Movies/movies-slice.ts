@@ -42,5 +42,6 @@ const MovieSlice = createSlice({
   },
 });
 
-export const {updatePageNumber, pushRandomMovies} = MovieSlice.actions;
+export const {updatePageNumber, pushRandomMovies, addToRecentlyVisit} =
+  MovieSlice.actions;
 export default MovieSlice.reducer;

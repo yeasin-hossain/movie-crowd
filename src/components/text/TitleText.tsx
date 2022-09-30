@@ -20,9 +20,9 @@ export default TitleText;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 26,
-    color: colors.blueGray(800),
-    textAlign: 'center',
+    fontSize: 19,
+    fontWeight: '800',
+    color: colors.blueGray(700),
     maxWidth: width - 32,
   },
 });

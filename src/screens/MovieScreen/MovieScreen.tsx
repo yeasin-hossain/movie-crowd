@@ -8,12 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {API_END_POINT, ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {PrimaryButton} from '../../components/button';
 import {
   addToFavorite,
+  addToRecentlyVisit,
   removeFromFavorite,
   useAppDispatch,
   useAppSelector,
@@ -37,6 +38,10 @@ const MovieScreen = ({route}: MovieProps) => {
     useGetMovieDetailQuery({movieId: movie.id});
   const {data: relatedMovie, isSuccess: relatedMovieSuccess} =
     useGetRelatedMovieQuery({movieId: movie.id});
+
+  useEffect(() => {
+    dispatch(addToRecentlyVisit(movie));
+  }, [movie, dispatch]);
 
   const visitImDB = async (imdbID: number) => {
     try {
