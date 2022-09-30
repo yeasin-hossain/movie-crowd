@@ -52,6 +52,10 @@ const MovieSlice = createSlice({
       state.recentlyVisitedMovies = [payload, ...data];
       saveToLocalStore(recentVisitedMoviesLocalStoreName, [payload, ...data]);
     },
+    clearRecentlyVisited(state: moviesInterface) {
+      state.recentlyVisitedMovies = [];
+      saveToLocalStore(recentVisitedMoviesLocalStoreName, []);
+    },
     pushRandomMovies(
       state: moviesInterface,
       action: PayloadAction<Array<movieInterface>>,
@@ -67,5 +71,6 @@ export const {
   pushRandomMovies,
   addToRecentlyVisit,
   setDataFromLocalStoreRecentVisit,
+  clearRecentlyVisited,
 } = MovieSlice.actions;
 export default MovieSlice.reducer;

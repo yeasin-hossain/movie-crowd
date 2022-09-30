@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {colors} from '../../_utils/Theme';
+import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 interface ButtonProps {
   text?: string;
   onPress?: () => void;
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 8,
+    paddingHorizontal: HORIZONTAL_SPACE,
   },
   buttonText: {
     color: colors.primary,
