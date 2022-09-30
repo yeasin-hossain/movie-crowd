@@ -1,4 +1,5 @@
 import {
+  FlatList,
   Image,
   Linking,
   ScrollView,
@@ -18,9 +19,12 @@ import {
   useAppSelector,
   useGetCastAndCrewQuery,
   useGetMovieDetailQuery,
+  useGetRelatedMovieQuery,
 } from '../../redux';
 import {CastAndCrew} from './CastAndCrew';
 import {MovieProps} from '../../_config/navigationTypes';
+import {MovieItem} from '../../feature';
+import {TitleText} from '../../components/text';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
@@ -31,6 +35,8 @@ const MovieScreen = ({route}: MovieProps) => {
     useGetCastAndCrewQuery({movieId: movie.id});
   const {data: movieDetail, isSuccess: movieDetailSuccess} =
     useGetMovieDetailQuery({movieId: movie.id});
+  const {data: relatedMovie, isSuccess: relatedMovieSuccess} =
+    useGetRelatedMovieQuery({movieId: movie.id});
 
   const visitImDB = async (imdbID: number) => {
     try {
@@ -68,6 +74,16 @@ const MovieScreen = ({route}: MovieProps) => {
         <Text style={styles.overview}>{movie.overview}</Text>
         {castEndCrewSuccess && (
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
+        )}
+
+        <TitleText text="Related Movies..." styleProp={styles.relatedMovie} />
+        {relatedMovieSuccess && (
+          <FlatList
+            data={relatedMovie?.results}
+            renderItem={({item}) => <MovieItem movie={item} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
         )}
 
         {watchList?.find(m => m.id === movie.id) ? (
@@ -135,5 +151,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0b41c',
     padding: HORIZONTAL_SPACE / 3,
     borderRadius: HORIZONTAL_SPACE / 2,
+  },
+  relatedMovie: {
+    textAlign: 'left',
+    marginTop: HORIZONTAL_SPACE,
   },
 });
