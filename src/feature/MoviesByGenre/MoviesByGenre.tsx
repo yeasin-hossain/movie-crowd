@@ -1,8 +1,7 @@
 import {FlatList, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppSelector, useGetMoviesByGenreMutation} from '../../redux';
-import {Loading} from '../../components/view';
-import MovieItem from './MovieItem';
+import {Loading, MovieItem} from '../../components/view';
 
 const MoviesByGenre = () => {
   const {id} = useAppSelector(state => state.genre);

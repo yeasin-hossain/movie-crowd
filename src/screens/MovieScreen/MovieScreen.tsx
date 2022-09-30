@@ -23,8 +23,8 @@ import {
 } from '../../redux';
 import {CastAndCrew} from './CastAndCrew';
 import {MovieProps} from '../../_config/navigationTypes';
-import {MovieItem} from '../../feature';
 import {TitleText} from '../../components/text';
+import {MovieItem} from '../../components/view';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();

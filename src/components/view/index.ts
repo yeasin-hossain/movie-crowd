@@ -4,3 +4,4 @@ export {default as ErrorView} from './Error';
 export {default as CustomBottomTabBar} from './CustomBottomTabBar';
 export {default as Loading} from './Loading';
 export {default as NotFound} from './NotFound';
+export {default as MovieItem} from './MovieItem';

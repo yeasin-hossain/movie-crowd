@@ -9,8 +9,8 @@ import {
   useAppSelector,
   useGetTrendingMoviesMutation,
 } from '../../redux';
-import {GenreList, MovieItem, MoviesByGenre} from '../../feature';
-import {Loading} from '../../components/view';
+import {GenreList, MoviesByGenre} from '../../feature';
+import {Loading, MovieItem} from '../../components/view';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {HomeDashboardProps} from '../../_config/navigationTypes';
 
@@ -49,13 +49,7 @@ const HomeDashboard = ({navigation}: HomeDashboardProps) => {
         }
         ListFooterComponent={<>{isLoading && <Loading />}</>}
         data={randomMovies}
-        renderItem={({item}) => (
-          <MovieItem
-            movie={item}
-            onPress={() => navigation.navigate('Movie', {movie: item})}
-            landscapeAble={true}
-          />
-        )}
+        renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
         columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
         onEndReached={() => dispatch(updatePageNumber(page + 1))}
