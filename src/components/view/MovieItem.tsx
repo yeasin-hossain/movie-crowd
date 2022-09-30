@@ -19,6 +19,7 @@ import {ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {useNavigation} from '@react-navigation/native';
 import {useOrientation} from '../../hooks';
+import {AddIcon, RemoveIcon} from '../svg';
 
 interface movieProps {
   movie: movieInterface;
@@ -48,27 +49,13 @@ const MovieItem = ({movie, landscapeAble}: movieProps) => {
           <TouchableOpacity
             style={styles.addToFevButton}
             onPress={() => dispatch(removeFromFavorite(movie))}>
-            <Text
-              style={{
-                fontSize: 18,
-                color: colors.text.light,
-                fontWeight: 'bold',
-              }}>
-              X
-            </Text>
+            <RemoveIcon size={18} />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             style={styles.addToFevButton}
             onPress={() => dispatch(addToFavorite(movie))}>
-            <Text
-              style={{
-                fontSize: 18,
-                color: colors.primary,
-                fontWeight: 'bold',
-              }}>
-              +
-            </Text>
+            <AddIcon size={18} />
           </TouchableOpacity>
         )}
       </View>
@@ -102,6 +89,7 @@ const styles = StyleSheet.create({
   },
   addToFevButton: {
     paddingHorizontal: HORIZONTAL_SPACE,
+    paddingVertical: HORIZONTAL_SPACE / 5,
     marginHorizontal: HORIZONTAL_SPACE * 2,
     marginTop: HORIZONTAL_SPACE / 2,
     backgroundColor: colors.yellow,

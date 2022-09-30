@@ -1,4 +1,3 @@
-// import Svg, {Rect} from 'react-native-svg';
 import React from 'react';
 import ContentLoader, {Circle, Rect} from 'react-content-loader/native';
 import {colors} from '../../_utils/Theme';
