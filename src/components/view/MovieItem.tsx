@@ -64,7 +64,7 @@ const MovieItem = ({movie, landscapeAble}: movieProps) => {
             <Text
               style={{
                 fontSize: 18,
-                color: colors.text.light,
+                color: colors.primary,
                 fontWeight: 'bold',
               }}>
               +
