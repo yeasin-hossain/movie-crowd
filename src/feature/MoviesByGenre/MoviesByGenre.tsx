@@ -1,7 +1,8 @@
 import {FlatList, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppSelector, useGetMoviesByGenreMutation} from '../../redux';
-import {Loading, MovieItem} from '../../components/view';
+import {MovieItem} from '../../components/view';
+import {MovieSvg} from '../../components/svg';
 
 const MoviesByGenre = () => {
   const {id} = useAppSelector(state => state.genre);
@@ -17,7 +18,12 @@ const MoviesByGenre = () => {
 
   return (
     <View>
-      {isLoading && <Loading />}
+      {isLoading && (
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+          <MovieSvg />
+          <MovieSvg />
+        </View>
+      )}
       <FlatList
         data={data?.results}
         renderItem={({item}) => <MovieItem movie={item} />}
