@@ -15,6 +15,7 @@ import {GenreList, MoviesByGenre, RecentlyVisit} from '../../feature';
 import {Loading, MovieItem} from '../../components/view';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {HomeDashboardProps} from '../../_config/navigationTypes';
+import Skeleton from './Skeleton';
 
 const HomeDashboard = ({}: HomeDashboardProps) => {
   const {page, randomMovies} = useAppSelector(state => state.movies);
@@ -52,7 +53,7 @@ const HomeDashboard = ({}: HomeDashboardProps) => {
             <Text style={styles.title}>Trending movies...</Text>
           </>
         }
-        ListFooterComponent={<>{isLoading && <Loading />}</>}
+        ListFooterComponent={<>{isLoading && <Skeleton />}</>}
         data={randomMovies}
         renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
         columnWrapperStyle={styles.wrapStyle}
