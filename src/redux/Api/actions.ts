@@ -7,7 +7,6 @@ interface ErrorType {
 export const ErrorFormat = ({code, details}: ErrorType) => {
   if (code === 'field_error') {
     return Object.keys(details).reduce((a, c) => {
-      //   console.log(details[c][0]);
       if (a.length > 0) {
         a = [a, ...details[c]].join('\n* ');
       } else {
@@ -15,7 +14,6 @@ export const ErrorFormat = ({code, details}: ErrorType) => {
       }
       return a;
     }, '');
-    // console.log(errorMessage);
   } else if (code === 'non_field_error') {
     return details.message as string;
   } else {
