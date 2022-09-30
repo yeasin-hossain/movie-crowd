@@ -12,7 +12,7 @@ import {
   useGetTrendingMoviesMutation,
 } from '../../redux';
 import {GenreList, MoviesByGenre, RecentlyVisit} from '../../feature';
-import {Loading, MovieItem} from '../../components/view';
+import {MovieItem} from '../../components/view';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {HomeDashboardProps} from '../../_config/navigationTypes';
 import Skeleton from './Skeleton';

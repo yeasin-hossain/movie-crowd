@@ -26,14 +26,18 @@ import {CastAndCrew} from './CastAndCrew';
 import {MovieProps} from '../../_config/navigationTypes';
 import {TitleText} from '../../components/text';
 import {MovieItem} from '../../components/view';
+import {MovieCastAndCrewSvg} from '../../components/svg';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
   const {watchList} = useAppSelector(state => state.watchList);
 
   const {movie} = route.params;
-  const {data: castAndCrews, isSuccess: castEndCrewSuccess} =
-    useGetCastAndCrewQuery({movieId: movie.id});
+  const {
+    data: castAndCrews,
+    isSuccess: castEndCrewSuccess,
+    isLoading: castEndCrewLoading,
+  } = useGetCastAndCrewQuery({movieId: movie.id});
   const {data: movieDetail, isSuccess: movieDetailSuccess} =
     useGetMovieDetailQuery({movieId: movie.id});
   const {data: relatedMovie, isSuccess: relatedMovieSuccess} =
@@ -77,6 +81,7 @@ const MovieScreen = ({route}: MovieProps) => {
           </Text>
         </View>
         <Text style={styles.overview}>{movie.overview}</Text>
+        {castEndCrewLoading && <MovieCastAndCrewSvg />}
         {castEndCrewSuccess && (
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
