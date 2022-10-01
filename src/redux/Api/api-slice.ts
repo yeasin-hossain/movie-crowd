@@ -26,10 +26,9 @@ const baseQueryWithReAuth = async (
   extraOptions: {},
 ) => {
   let result = await baseQuery(args, api, extraOptions);
-  const {dispatch, getState} = api;
   const {error} = result;
   /**
-   * Error
+   * there is nothing to handle error for now.
    */
   if (error) {
     console.log(error);
