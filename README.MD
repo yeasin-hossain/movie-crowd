@@ -3,22 +3,22 @@
 #### App features
 - Home page
 	- All movies Genres
-	- 5 movies by selecred genres
+	- 5 movies by selected genres
 	- Recently visited movies
 - Genre Page
 - 	 - 10 movies by selected genres and sort by Popularity/Vote ETC.
 - Trending Page
-	- last weeks Trending movies load by on demand inifite scroll
+	- last weeks Trending movies load by on demand infinite scroll
 - Watch-list
 	- added all watch-listed movies
 - Movie detail screen
 	- Movie poster
 	- 	IMDB rating
-	- 	Realse date
+	- 	Release date
 	- 	Cast images
 	- 	Crew images
 	- 	Related Movies
-	- Vist to IMDB page
+	- Visit to IMDB page
 	
 > How to add watch-list
 1. Click from movie card in +(plus) icon.
@@ -26,7 +26,7 @@
 
 > How to remove from watch-list
 1. Click from movie card in X(cross) icon.
-1. also available `Remve From Watch-list` button in movie details page.
+1. also available `Remove From Watch-list` button in movie details page.
 
 
 #### How to run this project?
