@@ -1,21 +1,37 @@
-import {Animated, Dimensions, StyleSheet, View} from 'react-native';
-import React, {useEffect, useRef} from 'react';
+import {
+  Animated,
+  Dimensions,
+  Modal,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import {colors} from '../../_utils/Theme';
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 
 interface BottomSheetProps {
   pick: number;
   isActive: boolean;
   children: React.ReactNode;
+  onClose: () => void;
 }
-const BottomSheet = ({pick, isActive, children}: BottomSheetProps) => {
+const BottomSheet = ({pick, isActive, children, onClose}: BottomSheetProps) => {
+  const [modalVisibility, SetModalVisibility] = useState(false);
   const animation = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (isActive) {
+      SetModalVisibility(isActive);
+    }
     Animated.timing(animation, {
       toValue: isActive ? 1 : 0,
       duration: 300,
       useNativeDriver: true,
-    }).start();
+    }).start(() => {
+      if (!isActive) {
+        SetModalVisibility(isActive);
+      }
+    });
   }, [isActive, animation]);
 
   const translateY = animation.interpolate({
@@ -29,10 +45,21 @@ const BottomSheet = ({pick, isActive, children}: BottomSheetProps) => {
   };
 
   return (
-    <Animated.View style={[styles.container, bottomSheetTransform]}>
-      <View style={styles.line} />
-      {children}
-    </Animated.View>
+    <Modal
+      transparent
+      visible={modalVisibility}
+      onDismiss={onClose}
+      onRequestClose={onClose}>
+      <View style={styles.body}>
+        <TouchableWithoutFeedback onPress={onClose}>
+          <View style={styles.transparentContainer} />
+        </TouchableWithoutFeedback>
+        <Animated.View style={[styles.container, bottomSheetTransform]}>
+          <View style={styles.line} />
+          {children}
+        </Animated.View>
+      </View>
+    </Modal>
   );
 };
 
@@ -47,6 +74,18 @@ const styles = StyleSheet.create({
     padding: 16,
     height,
     position: 'absolute',
+  },
+  body: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width,
+    height,
+    backgroundColor: '#17171722',
+  },
+  transparentContainer: {
+    flex: 1,
+    width,
   },
   line: {},
 });

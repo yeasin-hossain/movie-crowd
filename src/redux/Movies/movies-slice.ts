@@ -7,6 +7,7 @@ interface moviesInterface {
   randomMovies: Array<movieInterface>;
   recentlyVisitedMovies: Array<movieInterface>;
   page: number;
+  sort: string;
 }
 
 const initialState: moviesInterface = {
@@ -14,6 +15,7 @@ const initialState: moviesInterface = {
   moviesByGenre: [],
   randomMovies: [],
   page: 1,
+  sort: 'popularity.asc',
 };
 export const recentVisitedMoviesLocalStoreName = 'lastVisited';
 
@@ -30,6 +32,10 @@ const MovieSlice = createSlice({
     updatePageNumber(state: moviesInterface, action: PayloadAction<any>) {
       const {payload} = action;
       state.page = payload;
+    },
+    setSort(state: moviesInterface, action: PayloadAction<any>) {
+      const {payload} = action;
+      state.sort = payload;
     },
     setDataFromLocalStoreRecentVisit(
       state: moviesInterface,
@@ -72,5 +78,6 @@ export const {
   addToRecentlyVisit,
   setDataFromLocalStoreRecentVisit,
   clearRecentlyVisited,
+  setSort,
 } = MovieSlice.actions;
 export default MovieSlice.reducer;

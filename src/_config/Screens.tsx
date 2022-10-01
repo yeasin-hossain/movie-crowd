@@ -2,7 +2,7 @@ import React from 'react';
 import {HomeWrapper} from '../components/view';
 import {HomeDashboard} from '../screens/Home';
 import {MovieScreen} from '../screens/MovieScreen';
-import {SearchScreen} from '../screens/Search';
+import {GenreScreen} from '../screens/Genre';
 import WatchListScreen from '../screens/WatchList/WatchListScreen';
 import {HomeDashboardProps, MovieProps} from './navigationTypes';
 
@@ -22,10 +22,10 @@ export const WatchList = () => {
   );
 };
 
-export const Search = () => {
+export const Genre = () => {
   return (
     <HomeWrapper>
-      <SearchScreen />
+      <GenreScreen />
     </HomeWrapper>
   );
 };

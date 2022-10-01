@@ -9,6 +9,15 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
         method: 'GET',
       }),
     }),
+    getMoviesByGenreAndSort: builder.mutation<
+      any,
+      {genre: number; sort: string}
+    >({
+      query: ({genre, sort}) => ({
+        url: API_END_POINT.discoverSortedMovie(genre, sort),
+        method: 'GET',
+      }),
+    }),
     getTrendingMovies: builder.mutation<any, {page: number}>({
       query: ({page}) => ({
         url: API_END_POINT.trendingMovie(page),
@@ -38,6 +47,7 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetMoviesByGenreMutation,
+  useGetMoviesByGenreAndSortMutation,
   useGetTrendingMoviesMutation,
   useGetCastAndCrewQuery,
   useGetMovieDetailQuery,

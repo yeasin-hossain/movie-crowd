@@ -13,5 +13,9 @@ export const API_END_POINT = {
   movieDetail: (movieId: number) => `/movie/${movieId}${api_key}`,
   relatedMovie: (movieId: number) => `/movie/${movieId}/similar${api_key}`,
 
+  discoverSortedMovie: (genre: number, sort: string) =>
+    `/discover/movie${api_key}&include_adult=false&include_video=false&with_genres=${genre}&sort_by=${sort}`,
+  searchMovie: (query: any, page: number) =>
+    `/search/movie&query=${query}&page=${page}&include_adult=false${api_key}`,
   IMDB: (id: number) => `https://www.imdb.com/title/${id}`,
 };

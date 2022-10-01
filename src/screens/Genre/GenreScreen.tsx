@@ -1,43 +1,41 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {
-  pushRandomMovies,
-  updatePageNumber,
   useAppDispatch,
   useAppSelector,
-  useGetTrendingMoviesMutation,
+  useGetMoviesByGenreAndSortMutation,
 } from '../../redux';
 import {MovieItem} from '../../components/view';
+import SortMovie from './SortMovie';
 
-const SearchScreen = () => {
+const GenreScreen = () => {
   const dispatch = useAppDispatch();
 
-  const {page, randomMovies} = useAppSelector(state => state.movies);
-  const [getTrendingMovies, {isLoading}] = useGetTrendingMoviesMutation();
+  const {sort} = useAppSelector(state => state.movies);
+  const {id} = useAppSelector(state => state.genre);
+  const [getTrendingMovies] = useGetMoviesByGenreAndSortMutation();
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     (async () => {
       const {data} = await getTrendingMovies({
-        page,
+        genre: id,
+        sort,
       });
-      dispatch(pushRandomMovies(data?.results));
+      setMovies(data?.results);
     })();
-  }, [page, getTrendingMovies, dispatch]);
+  }, [id, getTrendingMovies, dispatch, sort]);
   return (
     <View>
+      <SortMovie />
       <FlatList
-        ListHeaderComponent={
-          <>
-            <Text style={styles.title}>Trending movies...</Text>
-          </>
-        }
-        data={randomMovies}
+        data={movies.slice(0, 10)}
         renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
         columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
-        onEndReached={() => dispatch(updatePageNumber(page + 1))}
-        onEndReachedThreshold={0}
+        // onEndReached={() => dispatch(updatePageNumber(page + 1))}
+        // onEndReachedThreshold={0}
         keyExtractor={(kye, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
         numColumns={10000}
@@ -46,7 +44,7 @@ const SearchScreen = () => {
   );
 };
 
-export default SearchScreen;
+export default GenreScreen;
 
 const styles = StyleSheet.create({
   title: {

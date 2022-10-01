@@ -3,15 +3,12 @@ import React, {useEffect} from 'react';
 import {colors} from '../../../_utils/Theme';
 import {useState} from 'react';
 import Options, {optionProps} from './Options';
-import {ErrorText} from '../../text';
 
 interface DropDownProps {
-  // iconName: string;
   placeholder?: string;
   value?: string | number;
   options: optionProps[];
   onChange: (value: string | number) => void;
-  error?: string;
 }
 
 const DropDown = ({
@@ -19,33 +16,17 @@ const DropDown = ({
   value = '',
   options,
   onChange,
-  error,
 }: DropDownProps) => {
-  const [selectedValue, SelectValue] = useState(value);
   const [showingOptions, ShowOption] = useState(false);
   useEffect(() => {
     ShowOption(false);
-    SelectValue(options.filter(data => data.value === value)?.[0]?.label || '');
   }, [options, value]);
-  const isError =
-    error && error.trim().length > 0 ? {borderColor: colors.error(600)} : {};
   return (
     <View>
       <TouchableOpacity
-        style={[styles.container, isError]}
+        style={styles.container}
         onPress={() => ShowOption(!showingOptions)}>
-        <View style={styles.iconContainer}>
-          <Text>Up</Text>
-        </View>
-        <Text style={styles.text}>
-          {selectedValue && selectedValue.toString().length > 0
-            ? selectedValue
-            : placeholder}
-        </Text>
-
-        <View style={styles.iconContainer}>
-          <Text>Down</Text>
-        </View>
+        <Text style={styles.text}>{placeholder}</Text>
         <Options
           visibility={showingOptions}
           onClose={() => ShowOption(false)}
@@ -54,7 +35,6 @@ const DropDown = ({
           onChange={onChange}
         />
       </TouchableOpacity>
-      {error && error.trim().length > 0 && <ErrorText text={error} />}
     </View>
   );
 };
@@ -69,7 +49,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     paddingHorizontal: 8,
     alignItems: 'center',
-    borderRadius: 24,
+    borderRadius: 8,
     borderWidth: 1,
     justifyContent: 'flex-start',
     flexDirection: 'row',

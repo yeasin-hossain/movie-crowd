@@ -3,7 +3,7 @@ export const bottomNavigationData = [
     label: 'Home',
   },
   {
-    label: 'Search',
+    label: 'Genre',
   },
   {
     label: 'Watch-list',

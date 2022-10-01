@@ -1,7 +1,7 @@
 import React from 'react';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomeScreen, Movie, Search, WatchList} from './Screens';
+import {HomeScreen, Movie, Genre, WatchList} from './Screens';
 import {useColorScheme} from 'react-native';
 import {Theme} from '../_utils';
 import {CustomBottomTabBar} from '../components/view';
@@ -19,7 +19,7 @@ const HomeTab = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={Search} />
+      <Tab.Screen name="Search" component={Genre} />
       <Tab.Screen name="WatchList" component={WatchList} />
     </Tab.Navigator>
   );
