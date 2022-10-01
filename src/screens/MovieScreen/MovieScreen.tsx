@@ -26,6 +26,7 @@ import {CastAndCrew} from './CastAndCrew';
 import {MovieProps} from '../../_config/navigationTypes';
 import {TitleText} from '../../components/text';
 import {MovieItem} from '../../components/view';
+import {Videos} from './Videos';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
@@ -81,6 +82,7 @@ const MovieScreen = ({route}: MovieProps) => {
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
 
+        <Videos movieId={movie?.id} />
         <TitleText text="Related Movies..." styleProp={styles.relatedMovie} />
         {relatedMovieSuccess && (
           <FlatList

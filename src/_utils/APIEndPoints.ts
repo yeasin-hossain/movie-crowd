@@ -11,6 +11,7 @@ export const API_END_POINT = {
     `/trending/movie/week${api_key}&page=${page}`,
   movieCastAndCrew: (movieId: number) => `/movie/${movieId}/credits${api_key}`,
   movieDetail: (movieId: number) => `/movie/${movieId}${api_key}`,
+  movieVideos: (movieId: number) => `/movie/${movieId}/videos${api_key}`,
   relatedMovie: (movieId: number) => `/movie/${movieId}/similar${api_key}`,
 
   discoverSortedMovie: (genre: number, sort: string) =>
