@@ -8,6 +8,7 @@ import {
 } from '../../redux';
 import {GenreList, MoviesByGenre, RecentlyVisit} from '../../feature';
 import {HomeDashboardProps} from '../../_config/navigationTypes';
+import {ScrollView} from 'react-native';
 
 const HomeDashboard = ({}: HomeDashboardProps) => {
   const dispatch = useAppDispatch();
@@ -22,11 +23,11 @@ const HomeDashboard = ({}: HomeDashboardProps) => {
   }, [dispatch]);
 
   return (
-    <>
+    <ScrollView>
       <GenreList />
       <MoviesByGenre />
       <RecentlyVisit />
-    </>
+    </ScrollView>
   );
 };
 

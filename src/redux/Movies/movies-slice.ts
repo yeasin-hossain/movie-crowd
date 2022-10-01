@@ -51,8 +51,8 @@ const MovieSlice = createSlice({
       const {payload} = action;
 
       let data = state.recentlyVisitedMovies.filter(m => m.id !== payload.id);
-      if (data.length > 10) {
-        data = data.slice(0, 10);
+      if (data.length >= 9) {
+        data = data.slice(0, 9);
       }
 
       state.recentlyVisitedMovies = [payload, ...data];

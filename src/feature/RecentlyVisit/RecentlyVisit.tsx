@@ -28,9 +28,12 @@ const RecentlyVisit = () => {
       </View>
       <FlatList
         data={recentlyVisitedMovies}
-        renderItem={({item}) => <MovieItem movie={item} />}
-        horizontal
+        renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
+        columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(kye, index) => `${kye.title}${index}`}
+        showsVerticalScrollIndicator={false}
+        numColumns={10000}
       />
     </View>
   );
@@ -46,5 +49,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  wrapStyle: {
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 });
