@@ -6,7 +6,7 @@ import Options, {optionProps} from './Options';
 import {ErrorText} from '../../text';
 
 interface DropDownProps {
-  iconName: string;
+  // iconName: string;
   placeholder?: string;
   value?: string | number;
   options: optionProps[];

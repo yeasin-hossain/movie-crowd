@@ -3,6 +3,7 @@ import {movieInterface} from '../redux';
 
 export type AppTabParam = {
   Home: undefined;
+  Search: undefined;
   WatchList: undefined;
 };
 
