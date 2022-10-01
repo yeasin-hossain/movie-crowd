@@ -5,6 +5,7 @@ import {MovieScreen} from '../screens/MovieScreen';
 import {GenreScreen} from '../screens/Genre';
 import WatchListScreen from '../screens/WatchList/WatchListScreen';
 import {HomeDashboardProps, MovieProps} from './navigationTypes';
+import {TrendingScreen} from '../screens/Trending';
 
 export const HomeScreen = ({navigation, route}: HomeDashboardProps) => {
   return (
@@ -26,6 +27,14 @@ export const Genre = () => {
   return (
     <HomeWrapper>
       <GenreScreen />
+    </HomeWrapper>
+  );
+};
+
+export const Trending = () => {
+  return (
+    <HomeWrapper>
+      <TrendingScreen />
     </HomeWrapper>
   );
 };

@@ -14,18 +14,18 @@ const GenreScreen = () => {
 
   const {sort} = useAppSelector(state => state.movies);
   const {id} = useAppSelector(state => state.genre);
-  const [getTrendingMovies] = useGetMoviesByGenreAndSortMutation();
+  const [getSortedMovies] = useGetMoviesByGenreAndSortMutation();
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const {data} = await getTrendingMovies({
+      const {data} = await getSortedMovies({
         genre: id,
         sort,
       });
       setMovies(data?.results);
     })();
-  }, [id, getTrendingMovies, dispatch, sort]);
+  }, [id, getSortedMovies, dispatch, sort]);
   return (
     <View>
       <SortMovie />

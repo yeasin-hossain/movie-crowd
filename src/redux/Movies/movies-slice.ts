@@ -4,7 +4,7 @@ import {movieInterface} from './movies-interface';
 
 interface moviesInterface {
   moviesByGenre: Array<movieInterface>;
-  randomMovies: Array<movieInterface>;
+  TrendingMovies: Array<movieInterface>;
   recentlyVisitedMovies: Array<movieInterface>;
   page: number;
   sort: string;
@@ -13,7 +13,7 @@ interface moviesInterface {
 const initialState: moviesInterface = {
   recentlyVisitedMovies: [],
   moviesByGenre: [],
-  randomMovies: [],
+  TrendingMovies: [],
   page: 1,
   sort: 'popularity.asc',
 };
@@ -62,19 +62,19 @@ const MovieSlice = createSlice({
       state.recentlyVisitedMovies = [];
       saveToLocalStore(recentVisitedMoviesLocalStoreName, []);
     },
-    pushRandomMovies(
+    pushTrendingMovies(
       state: moviesInterface,
       action: PayloadAction<Array<movieInterface>>,
     ) {
       const {payload} = action;
-      state.randomMovies = [...state.randomMovies, ...payload];
+      state.TrendingMovies = [...state.TrendingMovies, ...payload];
     },
   },
 });
 
 export const {
   updatePageNumber,
-  pushRandomMovies,
+  pushTrendingMovies,
   addToRecentlyVisit,
   setDataFromLocalStoreRecentVisit,
   clearRecentlyVisited,

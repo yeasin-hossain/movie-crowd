@@ -6,6 +6,9 @@ export const bottomNavigationData = [
     label: 'Genre',
   },
   {
+    label: 'Trending',
+  },
+  {
     label: 'Watch-list',
   },
 ];
