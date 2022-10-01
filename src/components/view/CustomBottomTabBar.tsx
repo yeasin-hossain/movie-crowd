@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   textSelected: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: colors.text.blueGray,
+    color: colors.primary,
   },
 });
