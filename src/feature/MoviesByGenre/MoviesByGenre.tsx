@@ -20,7 +20,7 @@ const MoviesByGenre = () => {
     <View>
       {isLoading && <Skeleton />}
       <FlatList
-        data={data?.results}
+        data={data?.results.slice(0, 5)}
         renderItem={({item}) => <MovieItem movie={item} />}
         horizontal
         showsHorizontalScrollIndicator={false}
