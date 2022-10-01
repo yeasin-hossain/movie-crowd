@@ -19,7 +19,7 @@ import {ImageEndPoint} from '../../_utils';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {useNavigation} from '@react-navigation/native';
 import {useOrientation} from '../../hooks';
-import {AddIcon, RemoveIcon} from '../svg';
+import {IconAdd, RemoveIcon} from '../svg';
 
 interface movieProps {
   movie: movieInterface;
@@ -55,7 +55,7 @@ const MovieItem = ({movie, landscapeAble}: movieProps) => {
           <TouchableOpacity
             style={styles.addToFevButton}
             onPress={() => dispatch(addToFavorite(movie))}>
-            <AddIcon size={18} />
+            <IconAdd size={18} />
           </TouchableOpacity>
         )}
       </View>
