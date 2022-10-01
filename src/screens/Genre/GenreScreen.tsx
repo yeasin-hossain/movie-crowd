@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {
+  movieInterface,
   useAppDispatch,
   useAppSelector,
   useGetMoviesByGenreAndSortMutation,
@@ -34,9 +34,7 @@ const GenreScreen = () => {
         renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
         columnWrapperStyle={styles.wrapStyle}
         showsHorizontalScrollIndicator={false}
-        // onEndReached={() => dispatch(updatePageNumber(page + 1))}
-        // onEndReachedThreshold={0}
-        keyExtractor={(kye, index) => `${kye.title}${index}`}
+        keyExtractor={(kye: movieInterface, index) => `${kye.title}${index}`}
         showsVerticalScrollIndicator={false}
         numColumns={10000}
       />
@@ -47,13 +45,6 @@ const GenreScreen = () => {
 export default GenreScreen;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 19,
-    fontWeight: '800',
-    color: colors.blueGray(700),
-    padding: HORIZONTAL_SPACE,
-    paddingBottom: HORIZONTAL_SPACE / 4,
-  },
   wrapStyle: {
     flexWrap: 'wrap',
     justifyContent: 'space-around',

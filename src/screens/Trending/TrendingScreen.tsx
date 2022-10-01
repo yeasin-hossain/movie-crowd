@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import {colors, HORIZONTAL_SPACE} from '../../_utils/Theme';
 import {
@@ -27,6 +27,7 @@ const TrendingScreen = () => {
   }, [getTrendingMovies, dispatch, page]);
   return (
     <>
+      <Text style={styles.title}>Trending...</Text>
       <FlatList
         data={TrendingMovies}
         renderItem={({item}) => <MovieItem movie={item} landscapeAble={true} />}
