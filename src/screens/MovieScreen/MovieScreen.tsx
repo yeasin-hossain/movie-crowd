@@ -98,12 +98,12 @@ const MovieScreen = ({route}: MovieProps) => {
 
         {watchList?.find(m => m.id === movie.id) ? (
           <PrimaryButton
-            buttonText="Remove From Favorite"
+            buttonText="Remove From Watch-list"
             onPress={() => dispatch(removeFromFavorite(movie))}
           />
         ) : (
           <PrimaryButton
-            buttonText="Add To Favorite"
+            buttonText="Add To Watch-list"
             onPress={() => dispatch(addToFavorite(movie))}
           />
         )}
