@@ -1,5 +1,4 @@
 import {
-  FlatList,
   Image,
   Linking,
   ScrollView,
@@ -7,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Platform,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {API_END_POINT, ImageEndPoint} from '../../_utils';
@@ -20,13 +20,11 @@ import {
   useAppSelector,
   useGetCastAndCrewQuery,
   useGetMovieDetailQuery,
-  useGetRelatedMovieQuery,
 } from '../../redux';
 import {CastAndCrew} from './CastAndCrew';
 import {MovieProps} from '../../_config/navigationTypes';
-import {TitleText} from '../../components/text';
-import {MovieItem} from '../../components/view';
 import {Videos} from './Videos';
+import {RelatedMovies} from './RelatedMovies';
 
 const MovieScreen = ({route}: MovieProps) => {
   const dispatch = useAppDispatch();
@@ -37,8 +35,6 @@ const MovieScreen = ({route}: MovieProps) => {
     useGetCastAndCrewQuery({movieId: movie.id});
   const {data: movieDetail, isSuccess: movieDetailSuccess} =
     useGetMovieDetailQuery({movieId: movie.id});
-  const {data: relatedMovie, isSuccess: relatedMovieSuccess} =
-    useGetRelatedMovieQuery({movieId: movie.id});
 
   useEffect(() => {
     dispatch(addToRecentlyVisit(movie));
@@ -82,16 +78,8 @@ const MovieScreen = ({route}: MovieProps) => {
           <CastAndCrew cast={castAndCrews?.cast} crew={castAndCrews?.crew} />
         )}
 
-        <Videos movieId={movie?.id} />
-        <TitleText text="Related Movies..." styleProp={styles.relatedMovie} />
-        {relatedMovieSuccess && (
-          <FlatList
-            data={relatedMovie?.results}
-            renderItem={({item}) => <MovieItem movie={item} />}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        )}
+        {Platform.OS === 'ios' && <Videos movieId={movie?.id} />}
+        <RelatedMovies movieId={movie?.id} />
 
         {watchList?.find(m => m.id === movie.id) ? (
           <PrimaryButton
@@ -158,9 +146,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.yellow,
     padding: HORIZONTAL_SPACE / 3,
     borderRadius: HORIZONTAL_SPACE / 2,
-  },
-  relatedMovie: {
-    textAlign: 'left',
-    marginTop: HORIZONTAL_SPACE,
   },
 });
