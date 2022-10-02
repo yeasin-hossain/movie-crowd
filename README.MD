@@ -3,22 +3,22 @@
 #### App features
 - Home page
 	- All movies Genres
-	- 5 movies by selected genres
+	- 5 movies by selecred genres
 	- Recently visited movies
 - Genre Page
 - 	 - 10 movies by selected genres and sort by Popularity/Vote ETC.
 - Trending Page
-	- last weeks Trending movies load by on demand infinite scroll
+	- last weeks Trending movies load by on demand inifite scroll
 - Watch-list
 	- added all watch-listed movies
 - Movie detail screen
 	- Movie poster
 	- 	IMDB rating
-	- 	Release date
+	- 	Realse date
 	- 	Cast images
 	- 	Crew images
 	- 	Related Movies
-	- Visit to IMDB page
+	- Vist to IMDB page
 	
 > How to add watch-list
 1. Click from movie card in +(plus) icon.
@@ -26,7 +26,10 @@
 
 > How to remove from watch-list
 1. Click from movie card in X(cross) icon.
-1. also available `Remove From Watch-list` button in movie details page.
+1. also available `Remve From Watch-list` button in movie details page.
+
+
+[Android APK Download](https://drive.google.com/drive/folders/1ZDBfGEV_SAi_78PTuEllLQfSPsxoHX6Z "Android APK Download")
 
 
 #### How to run this project?
@@ -48,3 +51,9 @@
 - React native async-storage
 - React native netinfo
 
+##### To Do
+- Full Text search movie
+- Trailer video make work for android
+- Dark mode
+- Improve UI
+- Splash Screen
