@@ -24,6 +24,7 @@ export interface movieInterface {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  watchListAddedDate?: string;
 }
 
 export interface Genre {

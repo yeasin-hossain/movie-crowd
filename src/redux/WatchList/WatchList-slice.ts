@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import moment from 'moment';
 import {getFromLocalStore, saveToLocalStore} from '../../_utils';
 import {movieInterface} from '../Movies';
 export const watchListLocalStoreName = 'watchList';
@@ -33,7 +34,10 @@ const WatchListSlice = createSlice({
       action: PayloadAction<movieInterface>,
     ) {
       const {payload} = action;
-      state.watchList.push(payload);
+      state.watchList.push({
+        ...payload,
+        watchListAddedDate: moment().format('YYYY-MM-DD'),
+      });
       saveToLocalStore(watchListLocalStoreName, state.watchList);
     },
     removeFromFavorite(
