@@ -33,7 +33,8 @@ const WatchListScreen = () => {
         <TitleText text="Your Favorites Movies..." styleProp={styles.title} />
         <View style={styles.buttonContainer}>
           <Button title="Filter" onPress={() => setOpen(true)} />
-          <Button title="Clear" onPress={() => setFilterDate()} />
+          <View style={{marginRight: 5}} />
+          <Button title="Clear" onPress={() => setFilterDate(null)} />
         </View>
       </View>
       <FlatList
@@ -79,5 +80,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginRight: HORIZONTAL_SPACE / 2,
   },
 });
